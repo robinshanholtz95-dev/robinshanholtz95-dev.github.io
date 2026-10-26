@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Robin Shanholtz</title>
+<meta name="description" content="Robin Shanholtz, counselor-in-training at Northwestern University. Research on transgender-affirming counseling, chosen family, and the effects of reading on prosocial behavior.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: faculty-page format. A fixed identity column (name, nav, contact) beside one reading column; stacks on phones. */
+:root {
+  --paper: #fbfbf9;
+  --ink: #1d232b;
+  --muted: #5b6573;
+  --rule: #dfe2e6;
+  --accent: #2c4f78;
+  --tint: #eef2f6;
+  --display: "Spectral", "Iowan Old Style", Georgia, serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #13171c; --ink: #e3e6ea; --muted: #9aa3ae; --rule: #2a313a; --accent: #9dbbe0; --tint: #1b222a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #13171c; --ink: #e3e6ea; --muted: #9aa3ae; --rule: #2a313a; --accent: #9dbbe0; --tint: #1b222a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 56px 72px;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 64px;
+}
+aside { position: sticky; top: calc(40px + env(safe-area-inset-top, 0px)); align-self: start; }
+.name { font-family: var(--display); font-weight: 500; font-size: 2.1rem; line-height: 1.1; margin: 0 0 10px; text-wrap: balance; }
+.role { color: var(--muted); margin: 0 0 28px; font-size: 0.98rem; line-height: 1.45; }
+nav ul { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 4px; border-left: 1px solid var(--rule); }
+nav a { display: block; padding: 3px 0 3px 14px; margin-left: -1px; border-left: 2px solid transparent; color: var(--ink); text-decoration: none; font-size: 0.95rem; }
+nav a:hover { color: var(--accent); border-left-color: var(--accent); }
+.contact { display: grid; gap: 6px; font-size: 0.93rem; }
+.contact .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
+.contact .email { word-break: break-all; user-select: all; }
+.btn {
+  display: inline-block; margin-top: 14px; padding: 8px 16px; border: 1px solid var(--accent);
+  color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.92rem; border-radius: 3px; width: fit-content;
+}
+.btn:hover { background: var(--accent); color: var(--paper); }
+
+main { min-width: 0; }
+section { padding-block: 0 44px; margin-bottom: 44px; border-bottom: 1px solid var(--rule); scroll-margin-top: 32px; }
+section:last-child { border-bottom: 0; margin-bottom: 0; }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.65rem; margin: 0 0 20px; line-height: 1.2; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 1.15rem; margin: 0; line-height: 1.3; text-wrap: balance; }
+h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; margin: 28px 0 12px; }
+h4:first-of-type { margin-top: 0; }
+p { margin: 0 0 14px; max-width: 66ch; }
+.lead { font-family: var(--display); font-size: 1.2rem; line-height: 1.55; }
+
+.interests { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 28px; }
+.interests li { padding-left: 16px; position: relative; }
+.interests li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+.entry { display: grid; gap: 4px; margin-bottom: 26px; }
+.entry:last-child { margin-bottom: 0; }
+.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 20px; flex-wrap: wrap; }
+.when { color: var(--muted); font-size: 0.88rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.where { color: var(--muted); font-size: 0.95rem; margin: 0; }
+.entry ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; max-width: 66ch; }
+.project { margin-top: 12px; }
+.project-title { font-style: italic; font-family: var(--display); font-size: 1.02rem; }
+
+.refs { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+.refs li { padding-left: 2em; text-indent: -2em; max-width: 70ch; }
+.refs b { font-weight: 600; }
+.tag { display: inline-block; text-indent: 0; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--tint); padding: 1px 8px; border-radius: 2px; margin-left: 4px; vertical-align: 1px; }
+
+.edu { display: grid; gap: 18px; }
+.cvbox { background: var(--tint); padding: 22px 24px; border-radius: 4px; display: grid; gap: 8px; max-width: 66ch; }
+.cvbox p { margin: 0; }
+.skills { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 8px 20px; margin: 0; }
+.skills dt { font-weight: 600; }
+.skills dd { margin: 0; }
+footer { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+
+@media (max-width: 820px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 36px 56px; }
+  aside { position: static; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+  nav ul { display: flex; flex-wrap: wrap; gap: 6px 18px; border-left: 0; }
+  nav a { padding: 2px 0; border-left: 0; margin: 0; }
+  .interests { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .skills dd { margin-bottom: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <aside>
+    <h1 class="name">Robin Shanholtz</h1>
+    <p class="role">Counselor-in-training<br>M.A., Clinical Mental Health Counseling<br>Northwestern University</p>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications &amp; Presentations</a></li>
+        <li><a href="#clinical">Clinical Experience</a></li>
+        <li><a href="#background">Education &amp; Background</a></li>
+        <li><a href="#cv">CV &amp; Contact</a></li>
+      </ul>
+    </nav>
+    <div class="contact">
+      <span class="label">Email</span>
+      <span class="email">robinshanholtz95@gmail.com</span>
+      <span class="label" style="margin-top:6px">Location</span>
+      <span>New York, NY</span>
+      <a class="btn" href="cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
+    </div>
+  </aside>
+
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p class="lead">I am a counselor-in-training in Northwestern University’s M.A. program in Clinical Mental Health Counseling and a research assistant in two labs, studying LGBTQ+ wellbeing and the psychology of reading.</p>
+      <p>My clinical and research work centers on affirming care for transgender and queer clients. I study how chosen family and online peer communities support queer people, and I am building a counseling group for transgender clients at my practicum site. At NYU’s Center for Conflict and Cooperation, I help run experiments and a meta-analysis on whether reading books changes prosocial behavior and polarization.</p>
+      <p>Before counseling, I spent eight years as a software engineer at Meta, leading privacy products used by Facebook’s users. I bring that background to research through programming, open and reproducible workflows, and R-based analysis. I am applying to PhD programs to continue this work.</p>
+      <ul class="interests" aria-label="Research interests">
+        <li>Transgender-affirming counseling</li>
+        <li>Chosen family and the queer family life cycle</li>
+        <li>Online peer support communities</li>
+        <li>Reading, prosociality, and polarization</li>
+        <li>Meta-analysis and computational methods</li>
+        <li>Training counselors in affirming care</li>
+      </ul>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+
+      <div class="entry">
+        <div class="entry-head"><h3>Center for Conflict and Cooperation</h3><span class="when">Oct 2025 – present</span></div>
+        <p class="where">Research Assistant · New York University · PI: Jay Van Bavel, PhD; Supervisor: Rémi Thériault, PhD</p>
+        <div class="project">
+          <span class="project-title">Effects of reading nonfiction on prosocial behavior</span>
+          <ul>
+            <li>Built interactive behavioral tasks in jsPsych and embedded them within a Qualtrics survey.</li>
+            <li>Drafted and submitted the IRB application for the pilot study, securing approval, and completed IRB-requested revisions.</li>
+            <li>Wrote an R script that generates highlightable Qualtrics questions from book chapters, substantially reducing survey-building time.</li>
+          </ul>
+        </div>
+        <div class="project">
+          <span class="project-title">Meta-analysis of reading fiction vs. nonfiction</span>
+          <ul>
+            <li>Ran a preliminary meta-analysis in R across hundreds of studies estimating the effect of reading nonfiction vs. fiction.</li>
+            <li>Presented findings at lab meeting, leading the team to focus further analysis on the type of nonfiction read.</li>
+          </ul>
+        </div>
+        <div class="project">
+          <span class="project-title">Lab infrastructure</span>
+          <ul>
+            <li>Created and maintain the lab’s GitHub repository for project code.</li>
+            <li>Led the lab discussion “Book Project Design: Economic Games and Alternative Paradigms” (2026).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head"><h3>Queer Thriving and Resilience Lab</h3><span class="when">Dec 2025 – present</span></div>
+        <p class="where">Research Assistant · Northwestern University · PI: Vanessa Dominguez, PhD</p>
+        <div class="project">
+          <span class="project-title">Online communities as a resource for transgender counseling clients</span> <span class="tag">Independent project</span>
+          <ul>
+            <li>Designed and led a literature review on online peer support communities and transgender client needs; presented the findings as a poster at the SAIGE Conference.</li>
+            <li>Developed a guide for counselors without training in transgender care on integrating online community resources into treatment.</li>
+          </ul>
+        </div>
+        <div class="project">
+          <span class="project-title">Queering the family lifecycle</span>
+          <ul>
+            <li>Co-authoring a conceptual manuscript: wrote portions of the introduction and a section on found family and emerging adulthood, and conducted supporting literature reviews.</li>
+          </ul>
+        </div>
+        <div class="project">
+          <span class="project-title">Queer family stress</span>
+          <ul><li>Collaborated on and submitted a SEED grant application to fund the project.</li></ul>
+        </div>
+        <div class="project">
+          <span class="project-title">Trauma-informed supervision</span>
+          <ul><li>Conducted a literature review and built an annotated bibliography for the PI’s book chapter.</li></ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head"><h3>Phonology Lab</h3><span class="when">Jan – May 2015</span></div>
+        <p class="where">Research Assistant · Northeastern University · PI: Iris Berent, PhD</p>
+        <ul><li>Coordinated experiments measuring phoneme reaction time; recorded and coded participant data.</li></ul>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications &amp; Presentations</h2>
+
+      <h4>Manuscripts in preparation</h4>
+      <ol class="refs">
+        <li>Dominguez, V., Wheatley, J., MacKay, S., Listrom, O., <b>Shanholtz, R.</b>, Biche, J., &amp; Rosile, J. (in preparation). <i>Queering the family lifecycle.</i></li>
+        <li>Thériault, R., Choi, B., Goldstein, B., <b>Shanholtz, R.</b>, Ramy, A., et al. (in preparation). <i>Reading books changes lives: Investigating the effects of popular psychology books on prosociality and polarization.</i></li>
+      </ol>
+
+      <h4>Conference presentations</h4>
+      <ol class="refs">
+        <li><b>Shanholtz, R.</b> (2026, October). <i>Trans learning: Rooted in online trans communities</i> [Poster presentation]. Society for Sexual, Affectional, Intersex, and Gender Expansive Identities (SAIGE) Conference, Seattle, WA. <span class="tag">First author</span></li>
+        <li>Dominguez, V., Biche, J. H., <b>Shanholtz, R.</b>, Rosile, J., &amp; Wheatley, J. (2026, October 23–24). <i>Rooted in chosen family: Queering the family life cycle – Reframing family development, identity, aging, and end-of-life decisions</i> [Conference presentation]. SAIGE Conference, Seattle, WA.</li>
+        <li>Thériault, R., Choi, B., Goldstein, B., Ramy, A., <b>Shanholtz, R.</b>, Guilas, A.-C., Rathje, S., Globig, L., &amp; Van Bavel, J. (2025, December). <i>Can books reduce polarization? AI-generated simulations of reading non-fiction chapters</i> [Poster presentation]. MIT Polarization Workshop, Cambridge, MA.</li>
+      </ol>
+
+      <h4>Grants</h4>
+      <ol class="refs">
+        <li><i>Queer Family Stress.</i> SEED grant application, The Family Institute at Northwestern University, Queer Thriving and Resilience Lab. PI: Vanessa Dominguez, PhD. Role: Contributor. <span class="tag">Under review</span></li>
+      </ol>
+    </section>
+
+    <section id="clinical">
+      <h2>Clinical Experience</h2>
+      <div class="entry">
+        <div class="entry-head"><h3>Practicum Counselor-in-Training, PMA Mental Health</h3><span class="when">Mar 2026 – present</span></div>
+        <p class="where">New York, NY · Supervisor: Robert York, LMHC</p>
+        <ul>
+          <li>Provide individual counseling to low-acuity private practice clients (84 direct and 228 indirect hours to date).</li>
+          <li>Developing a counseling group for transgender clients to support affirming care and community-building.</li>
+          <li>Consult with colleagues seeking guidance on affirming care for transgender clients.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><h3>Volunteer Crisis Counselor, Crisis Text Line</h3><span class="when">Apr 2025 – present</span></div>
+        <p class="where">Remote</p>
+        <ul>
+          <li>Supported 50+ texters in crisis through de-escalation and safety planning after completing 40-hour crisis counseling training.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="background">
+      <h2>Education &amp; Background</h2>
+      <h4>Education</h4>
+      <div class="edu">
+        <div class="entry">
+          <div class="entry-head"><h3>M.A., Clinical Mental Health Counseling</h3><span class="when">Expected Aug 2027</span></div>
+          <p class="where">Northwestern University · GPA 4.0/4.0 · Emerging Scholar award (2025 – present)</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head"><h3>B.S., Computer Science and Cognitive Psychology</h3><span class="when">2017</span></div>
+          <p class="where">Northeastern University, Boston, MA</p>
+        </div>
+      </div>
+
+      <h4>Professional experience</h4>
+      <div class="entry">
+        <div class="entry-head"><h3>Senior Software Engineer, Meta</h3><span class="when">2017 – 2025</span></div>
+        <p class="where">Privacy and Live Video teams · New York, NY</p>
+        <ul>
+          <li>Led a team of three engineers building privacy products for Facebook users, including Off-Facebook Activity, Activity Log, and Privacy Checkup, and later Live Video products such as Live Q&amp;A.</li>
+          <li>Led weekly company-wide privacy incident reviews and helped Meta meet privacy regulations, including GDPR.</li>
+          <li>Served as Intern Director for three terms, coaching intern managers; mentored two interns to full-time offers.</li>
+        </ul>
+      </div>
+
+      <h4>Skills</h4>
+      <dl class="skills">
+        <dt>Programming &amp; data</dt><dd>R (including meta-analysis), JavaScript, jsPsych, Qualtrics custom JavaScript, Git/GitHub, Python, SQL</dd>
+        <dt>Research</dt><dd>IRB applications, literature reviews, annotated bibliographies, grant writing, manuscript writing</dd>
+      </dl>
+    </section>
+
+    <section id="cv">
+      <h2>CV &amp; Contact</h2>
+      <div class="cvbox">
+        <p>The full curriculum vitae includes complete dates, supervisors, and experience details.</p>
+        <p><a href="cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></p>
+      </div>
+      <p style="margin-top:22px">I welcome questions about my research and about collaboration. Email me at <span class="email" style="user-select:all">robinshanholtz95@gmail.com</span>.</p>
+      <footer>Last updated October 2026</footer>
+    </section>
+  </main>
+</div>
+</body>
+</html>
